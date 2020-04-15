@@ -21,12 +21,12 @@ class memeGuy {
     }
   }
 
-  hits(train) {
+  hits(enemy) {
     let x1 = this.x + this.r * 0.5;
     let y1 = this.y + this.r * 0.5;
-    let x2 = train.x + train.r * 0.5;
-    let y2 = train.y + train.r * 0.5;
-    return collideCircleCircle(x1, y1, this.r, x2, y2, train.r);
+    let x2 = enemy.x + enemy.r * 0.5;
+    let y2 = enemy.y + enemy.r * 0.5;
+    return collideCircleCircle(x1, y1, this.r, x2, y2, enemy.r);
   }
 
   move() {

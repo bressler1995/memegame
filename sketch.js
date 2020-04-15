@@ -9,6 +9,7 @@ let bf_text = ["Millenials", "Me", "Me", "Me", "Me", "Introverts", "Me", "Me"];
 let gf_text = ["A stable career", "Work", "Multiple Pressing matters and responsibilities", "Scientific evidence supporting the danger of staring at the sun", "Distracted boyfriend meme", "Corona virus", "This meme", "Still using this meme in 2020"];
 let other_text = ["Avocado toast", "Anything else", "A nap", "Solar eclipse", "Drake hotline bling meme", "Enjoying some me time", "Anything that's not this meme", "Newer, funnier memes"];
 let myfont;
+var soundinitialized = false;
 
 function preload() {
   const options = {
@@ -35,7 +36,7 @@ function mousePressed() {
       memeguy.jump();
       break;
     case 2:
-      initializegame();
+      initializegame(true);
       break;
   }
   
@@ -61,10 +62,10 @@ function keyPressed() {
     case 0:
       if (key == '1') {
         gamemode = 0;
-        initializegame();
+        initializegame(false);
       } else if(key == '2') {
         gamemode = 1;
-        initializegame();
+        initializegame(false);
       }
       
       break;
@@ -74,7 +75,7 @@ function keyPressed() {
       }
       break;
     case 2:
-      initializegame();
+      initializegame(true);
       break;
   }
   
@@ -164,7 +165,7 @@ function draw() {
 
 }
 
-function initializegame() {
+function initializegame(reset) {
   loop();
   if(gamemode == 0) {
     memeguy = new memeGuy(100);
@@ -172,7 +173,17 @@ function initializegame() {
     memeguy = new memeGuy(150);
   }
   
-  soundClassifier.classify(gotCommand);
-  gamestate = 1;
+  if (soundinitialized == false) {
+    soundClassifier.classify(gotCommand);
+    soundinitialized = true;
+  }
+
   memegirls = [];
+
+  if(reset == false) {
+    gamestate = 1;
+  } else if(reset == true) {
+    gamestate = 0;
+  }
+  
 }

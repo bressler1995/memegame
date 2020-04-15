@@ -10,6 +10,7 @@ class memeGirl {
     this.r = 100;
     this.x = width;
     this.y = height - this.r;
+    this.gravity = 2.9;
   }
 
   move() {

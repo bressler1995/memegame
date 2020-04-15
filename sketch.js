@@ -1,6 +1,6 @@
 let memeguy;
 let mgImg, mgiImg, loseImg, bImg;
-let classicbg_img, classicplayer_img;
+let classicbg_img, classicplayer_img, whitedino;
 let memegirls = [];
 let soundClassifier;
 let gamestate = 0;
@@ -12,11 +12,13 @@ let myfont;
 var soundinitialized = false;
 var toast, toaststate = 0, toastdom;
 
+
 function preload() {
   const options = {
-    probabilityThreshold: 0.9
+    probabilityThreshold: 0.95
   };
   soundClassifier = ml5.soundClassifier('SpeechCommands18w', options);
+  whitedino = loadImage('whitedino.png');
   //meme images
   mgImg = loadImage('memeguy.png');
   mgiImg = loadImage('memegirl.png');
@@ -109,6 +111,7 @@ function draw() {
       text("Press 2 For Meme Version", 50, 90);
       pop();
 
+      image(whitedino, width - 200, height - 200, 150, 160)
       break;
     case 1:
       if (random(1) < 0.005) {

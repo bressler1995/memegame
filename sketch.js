@@ -134,8 +134,9 @@ function draw() {
             fill(73, 73, 73);
             textSize(24);
             textFont(startfont);
-            text("GAME OVER", width / 2 - 110, height / 2);
+            text("GAME OVER", width / 2 - 110, height / 2 - 30);
             pop();
+            showtoast("Press Any Key To Restart.")
           } else if(gamemode == 1) {
             let randommeme = round(random(0, bf_text.length -1));
             console.log(randommeme);
@@ -153,9 +154,9 @@ function draw() {
             text(gf_text[randommeme], t.x + 50, t.y - 30, t.x + 50 + 100);
             text(other_text[randommeme], width - 275 + 50, height - 200, width - 275 + 50 + 100);
             pop();
+            showtoast("Save a Picture Or Press Any Key To Restart.")
           }
           
-          showtoast("Save a Picture Or Press Any Key To Restart.")
           gamestate = 2;
           noLoop();
         }
@@ -204,6 +205,6 @@ function showtoast(message) {
     setTimeout(function(){
       toast.removeClass("show_toast");
       toaststate = 0;
-    }, 2000);
+    }, 2300);
   }
 }

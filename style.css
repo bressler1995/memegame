@@ -16,3 +16,37 @@ canvas {
     transform: translate(-50%, -50%);
     border-radius: 5px;
 }
+
+.toast {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    display: block;
+    position: fixed;
+    width:auto;
+    font-family: "Arial";
+    font-size:14px;
+    line-height:22px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color:#FFF;
+    padding:15px;
+    border-radius:3px;
+    box-sizing: border-box;
+    word-break: break-all;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    opacity:0;
+    visibility: hidden;
+    text-transform: uppercase;
+    max-width:400px;
+}
+
+.show_toast {
+    opacity: 1 !important;
+    visibility: visible !important;
+}

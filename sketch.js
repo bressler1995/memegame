@@ -10,6 +10,7 @@ let gf_text = ["A stable career", "Work", "Multiple Pressing matters and respons
 let other_text = ["Avocado toast", "Anything else", "A nap", "Solar eclipse", "Drake hotline bling meme", "Enjoying some me time", "Anything that's not this meme", "Newer, funnier memes"];
 let myfont;
 var soundinitialized = false;
+var toast, toaststate = 0, toastdom;
 
 function preload() {
   const options = {
@@ -43,6 +44,8 @@ function mousePressed() {
 }
 
 function setup() {
+  toast = select('#toast');
+  toastdom = document.getElementById("toast");
   createCanvas(800, 450);
 }
 
@@ -182,8 +185,26 @@ function initializegame(reset) {
 
   if(reset == false) {
     gamestate = 1;
+    showtoast("Press space to jump and change jump speed.");
   } else if(reset == true) {
     gamestate = 0;
   }
   
+}
+
+function showtoast(message) {
+  toastdom.innerHTML = message;
+
+  if(toaststate == 0) {
+    setTimeout(function(){
+      toast.addClass("show_toast");
+      toaststate = 1;
+      showtoast(message);
+    }, 500);
+  } else if(toaststate == 1) {
+    setTimeout(function(){
+      toast.removeClass("show_toast");
+      toaststate = 0;
+    }, 2000);
+  }
 }

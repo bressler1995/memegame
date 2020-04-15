@@ -1,13 +1,21 @@
 class memeGuy {
-  constructor() {
-    this.r = 150;
+  constructor(inputradius) {
+    this.r = inputradius;
     this.x = 50;
     this.y = height - this.r;
     this.vy = 0;
     this.gravity = 2.9;
+    this.jumpmode = -1;
   }
 
   jump() {
+    this.jumpmode *= -1;
+    if(this.jumpmode == 1) {
+      this.gravity = 2.9;
+    } else if(this.jumpmode == -1) {
+      this.gravity = 1.8;
+    }
+
     if (this.y == height - this.r) {
       this.vy = -35;
     }
@@ -28,7 +36,11 @@ class memeGuy {
   }
 
   show() {
-    image(mgImg, this.x, this.y, this.r, this.r);
+    if(gamemode == 0) {
+      image(classicplayer_img, this.x, this.y, this.r, this.r);
+    } else if(gamemode == 1) {
+      image(mgImg, this.x, this.y, this.r, this.r);
+    }
 
     // fill(255, 50);
     // ellipseMode(CORNER);

@@ -17,7 +17,12 @@ class memeGirl {
   }
 
   show() {
-    image(mgiImg, this.x, this.y, this.r, this.r);
+    if(gamemode == 0) {
+      image(classicenemy_img, this.x, this.y, this.r, this.r);
+    } else if(gamemode == 1) {
+      image(mgiImg, this.x, this.y, this.r, this.r);
+    }
+    
 
     // fill(255, 50);
     // ellipseMode(CORNER);

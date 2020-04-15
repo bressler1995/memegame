@@ -36,9 +36,6 @@ function mousePressed() {
     case 1:
       memeguy.jump();
       break;
-    case 2:
-      initializegame(true);
-      break;
   }
   
 }
@@ -149,14 +146,16 @@ function draw() {
             strokeWeight(1.2);
             stroke(0);
             fill(255);
-            textSize(16);
+            textSize(18);
+            textLeading(22);
             textFont(myfont);
             text(bf_text[randommeme], memeguy.x, memeguy.y - 30, memeguy.x + 100);
             text(gf_text[randommeme], t.x + 50, t.y - 30, t.x + 50 + 100);
             text(other_text[randommeme], width - 275 + 50, height - 200, width - 275 + 50 + 100);
             pop();
           }
-
+          
+          showtoast("Save a Picture Or Press Any Key To Restart.")
           gamestate = 2;
           noLoop();
         }

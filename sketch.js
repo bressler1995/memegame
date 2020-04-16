@@ -9,8 +9,11 @@ let bf_text = ["Millenials", "Me", "Me", "Me", "Me", "Introverts", "Me", "Me"];
 let gf_text = ["A stable career", "Work", "Multiple Pressing matters and responsibilities", "Scientific evidence supporting the danger of staring at the sun", "Distracted boyfriend meme", "Corona virus", "This meme", "Still using this meme in 2020"];
 let other_text = ["Avocado toast", "Anything else", "A nap", "Solar eclipse", "Drake hotline bling meme", "Enjoying some me time", "Anything that's not this meme", "Newer, funnier memes"];
 let myfont;
-var soundinitialized = false;
-var toast, toaststate = 0, toastdom;
+let soundinitialized = false;
+let toast, toaststate = 0, toastdom;
+let savepic;
+let canvasdom;
+var canvasdom_rect;
 
 
 function preload() {
@@ -45,7 +48,15 @@ function mousePressed() {
 function setup() {
   toast = select('#toast');
   toastdom = document.getElementById("toast");
+  canvasdom = document.getElementById("defaultCanvas0");
+  savepic = createButton('');
+  savepic.addClass('savepic');
+  savepic.mousePressed(function(){
+    saveCanvas('boringmeme', 'jpg');
+  });
+  
   createCanvas(800, 450);
+  calculatebounds();
 }
 
 function gotCommand(error, results) {
@@ -77,6 +88,7 @@ function keyPressed() {
       }
       break;
     case 2:
+      savepic.removeClass("show_savepic");
       initializegame(true);
       break;
   }
@@ -157,7 +169,8 @@ function draw() {
             text(gf_text[randommeme], t.x + 50, t.y - 30, t.x + 50 + 100);
             text(other_text[randommeme], width - 275 + 50, height - 200, width - 275 + 50 + 100);
             pop();
-            showtoast("Save a Picture Or Press Any Key To Restart.")
+            showtoast("Save a Picture Or Press Any Key To Restart.");
+            savepic.addClass("show_savepic");
           }
           
           gamestate = 2;
@@ -210,4 +223,16 @@ function showtoast(message) {
       toaststate = 0;
     }, 2300);
   }
+}
+
+function calculatebounds() {
+  canvasdom_rect = canvasdom.getBoundingClientRect();
+  console.log(canvasdom_rect.left)
+  savepic.style('left', canvasdom_rect.left + 30 + "px");
+  savepic.style('top', canvasdom_rect.top + 30 + "px");
+  
+}
+
+function windowResized() {
+  calculatebounds();
 }

@@ -53,3 +53,28 @@ canvas {
     visibility: visible !important;
     transform: translate(-50%, -50%) scale(1) !important;
 }
+
+.savepic {
+    display: block;
+    position: fixed;
+    outline: none !important;
+    width:100px;
+    height:100px;
+    z-index:101;
+    border-radius: 5px;
+    background-color: rgb(0, 77, 219);
+    color:#FFF;
+    border: 0;
+    background-image: url('savepic.png');
+    background-size: contain;
+    visibility: hidden;
+}
+
+.savepic:hover {
+    background-color: rgb(48, 112, 230);
+}
+
+.show_savepic {
+    visibility: visible !important;
+}
+

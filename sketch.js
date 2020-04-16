@@ -9,7 +9,6 @@ let bf_text = ["Millenials", "Me", "Me", "Me", "Me", "Introverts", "Me", "Me"];
 let gf_text = ["A stable career", "Work", "Multiple Pressing matters and responsibilities", "Scientific evidence supporting the danger of staring at the sun", "Distracted boyfriend meme", "Corona virus", "This meme", "Still using this meme in 2020"];
 let other_text = ["Avocado toast", "Anything else", "A nap", "Solar eclipse", "Drake hotline bling meme", "Enjoying some me time", "Anything that's not this meme", "Newer, funnier memes"];
 let myfont;
-let soundinitialized = false;
 let toast, toaststate = 0, toastdom;
 let savepic;
 let canvasdom;
@@ -20,7 +19,7 @@ function preload() {
   const options = {
     probabilityThreshold: 0.95
   };
-  soundClassifier = ml5.soundClassifier('SpeechCommands18w', options);
+
   whitedino = loadImage('whitedino.png');
   //meme images
   mgImg = loadImage('memeguy.png');
@@ -57,16 +56,6 @@ function setup() {
   
   createCanvas(800, 450);
   calculatebounds();
-}
-
-function gotCommand(error, results) {
-  if (error) {
-    console.error(error);
-  }
-  console.log(results[0].label, results[0].confidence);
-  if (results[0].label == 'up') {
-    memeguy.jump();
-  }
 }
 
 function keyPressed() {
@@ -190,11 +179,6 @@ function initializegame(reset) {
     memeguy = new memeGuy(100);
   } else if(gamemode == 1) {
     memeguy = new memeGuy(150);
-  }
-  
-  if (soundinitialized == false) {
-    soundClassifier.classify(gotCommand);
-    soundinitialized = true;
   }
 
   memegirls = [];
